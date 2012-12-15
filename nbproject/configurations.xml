@@ -4,15 +4,19 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>commandsBroadcaster.hpp</itemPath>
+      <itemPath>mainDialog.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>newForm.ui</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
+      <itemPath>mainDialog.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -34,7 +38,7 @@
         <compilerSet>default</compilerSet>
       </toolsSet>
       <qt>
-        <modules>core gui</modules>
+        <modules>core gui network</modules>
       </qt>
       <compileType>
       </compileType>

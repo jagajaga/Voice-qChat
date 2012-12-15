@@ -6,6 +6,9 @@
  */
 
 #include <QtGui/QApplication>
+#include <QtGui/qwidget.h>
+
+#include "mainDialog.h"
 
 int
 main (int argc, char *argv[])
@@ -14,7 +17,8 @@ main (int argc, char *argv[])
   // Q_INIT_RESOURCE(resfile);
 
   QApplication app (argc, argv);
-
+  newForm * nf = new newForm();
+  nf->show ();
   // create and show your widgets here
 
   return app.exec ();
