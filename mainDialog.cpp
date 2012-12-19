@@ -9,25 +9,38 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 
-newForm::newForm ()
-{
-  widget.setupUi (this);
-  widget.listWidget->setSortingEnabled (true);
-  for (int i = 0; i < 50; i++)
-    {
-      widget.listWidget->addItem (new QListWidgetItem ("Oak"));
-      widget.listWidget->addItem (new QListWidgetItem ("Banana"));
-      widget.listWidget->addItem (new QListWidgetItem ("Apple"));
-      widget.listWidget->addItem (new QListWidgetItem ("Orange"));
-      widget.listWidget->addItem (new QListWidgetItem ("Grapes"));
-      widget.listWidget->addItem (new QListWidgetItem ("Jayesh"));
-      widget.listWidget->addItem (new QListWidgetItem ("Pineapple"));
-      widget.listWidget->addItem (new QListWidgetItem ("GROUNDNUT"));
-      widget.listWidget->addItem (new QListWidgetItem ("Sugarcane"));
-      widget.listWidget->addItem (new QListWidgetItem ("Coconut"));
-      widget.listWidget->addItem (new QListWidgetItem ("Remote"));
-      widget.listWidget->addItem (new QListWidgetItem ("Mango"));
-    }
+newForm::newForm() {
+    my_command_broadcaster = new CommandBroadcaster();
+    mynd = new nickDialog(my_command_broadcaster);
+    widget.setupUi(this);
+    connect(widget.quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    widget.stop->setText("Send hello");
+    connect(widget.stop, SIGNAL(clicked()), this, SLOT(send_hello()));
+    connect(my_command_broadcaster, SIGNAL(newUser(QString)), this, SLOT(newUser(QString)));
+    connect(my_command_broadcaster, SIGNAL(deleteUser(QString)), this, SLOT(deleteUser(QString)));
+    connect(mynd, SIGNAL(nick_changed(QString)), this, SLOT(nick_changed(QString)));
+    connect(widget.nick, SIGNAL(clicked()), this, SLOT(set_nick()));
 }
 
-newForm::~newForm () { }
+void newForm::newUser(QString user) {
+    widget.listWidget->addItem(new QListWidgetItem(user));
+}
+
+void newForm::deleteUser(QString user) {
+    widget.listWidget->removeItemWidget(new QListWidgetItem(user));
+}
+
+void newForm::send_hello() {
+    my_command_broadcaster->send_hello();
+}
+
+void newForm::set_nick() {
+    mynd->show();   
+}
+
+void newForm::nick_changed(QString nick) {
+    widget.nick->setText(nick);
+}
+
+newForm::~newForm() {
+}

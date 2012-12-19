@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newForm.ui'
 **
-** Created: Sat Dec 15 20:42:30 2012
+** Created: Wed Dec 19 00:30:52 2012
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -28,6 +28,7 @@ class Ui_newForm
 public:
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
+    QPushButton *nick;
     QPushButton *mute;
     QPushButton *stop;
     QPushButton *quit;
@@ -37,7 +38,7 @@ public:
     {
         if (newForm->objectName().isEmpty())
             newForm->setObjectName(QString::fromUtf8("newForm"));
-        newForm->resize(375, 202);
+        newForm->resize(420, 225);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -47,6 +48,11 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        nick = new QPushButton(newForm);
+        nick->setObjectName(QString::fromUtf8("nick"));
+
+        verticalLayout->addWidget(nick);
+
         mute = new QPushButton(newForm);
         mute->setObjectName(QString::fromUtf8("mute"));
 
@@ -79,6 +85,7 @@ public:
     void retranslateUi(QDialog *newForm)
     {
         newForm->setWindowTitle(QApplication::translate("newForm", "newForm", 0, QApplication::UnicodeUTF8));
+        nick->setText(QApplication::translate("newForm", "Nick", 0, QApplication::UnicodeUTF8));
         mute->setText(QApplication::translate("newForm", "Mute Mic", 0, QApplication::UnicodeUTF8));
         stop->setText(QApplication::translate("newForm", "Stop", 0, QApplication::UnicodeUTF8));
         quit->setText(QApplication::translate("newForm", "Quit", 0, QApplication::UnicodeUTF8));
