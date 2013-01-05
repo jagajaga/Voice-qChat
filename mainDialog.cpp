@@ -9,7 +9,6 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 
-#include <iostream>
 
 newForm::newForm() {
     my_command_broadcaster = new CommandBroadcaster();
@@ -68,7 +67,6 @@ void newForm::nick_changed(QString nick) {
     widget.stop->show();
     widget.mute->show();
     widget.stop->setText("Disconnect");
-    std::cerr << "nick changedn\n";
 }
 
 void newForm::connect_disconnect() {

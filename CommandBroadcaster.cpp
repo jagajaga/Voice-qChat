@@ -1,7 +1,6 @@
 #include "CommandBroadcaster.hpp"
 #include <QNetworkInterface>
 
-#include <iostream>
 
 CommandBroadcaster::CommandBroadcaster() {
     connect(&my_udp_socket, SIGNAL(readyRead()), this, SLOT(process_pending_datagrams()));
@@ -26,7 +25,6 @@ void CommandBroadcaster::open_port() {
 }
 
 bool CommandBroadcaster::re_port() {
-    std::cerr << open << "\n";
     if (!open) {
         open_port();
         return 1;
