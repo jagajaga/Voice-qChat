@@ -18,7 +18,7 @@ main (int argc, char *argv[])
 
   QApplication app (argc, argv);
   newForm * nf = new newForm();
-  nf->show ();
+ //nf->show ();
   // create and show your widgets here
 
   return app.exec ();

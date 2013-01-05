@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newForm.ui'
 **
-** Created: Wed Dec 19 00:30:52 2012
+** Created: Sun Jan 6 01:10:08 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,7 +38,7 @@ public:
     {
         if (newForm->objectName().isEmpty())
             newForm->setObjectName(QString::fromUtf8("newForm"));
-        newForm->resize(420, 225);
+        newForm->resize(283, 137);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);

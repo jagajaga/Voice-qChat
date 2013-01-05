@@ -27,8 +27,11 @@ void nickDialog::quit() {
 }
 
 void nickDialog::set_nick() {
-    if (widget.lineEdit->displayText() != "") {
+    if (widget.lineEdit->displayText() != "" && widget.lineEdit->displayText() != "Please set nick") {
+        my_command_broadcaster->open_port();
         my_command_broadcaster->set_nick(widget.lineEdit->displayText());
+        my_command_broadcaster->send_nick();
+        my_command_broadcaster->send_ping();
         emit nick_changed(widget.lineEdit->displayText());
         quit();
     } else {

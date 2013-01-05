@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'nickDialog.hpp'
 **
-** Created: Wed Dec 19 05:04:52 2012
+** Created: Sun Jan 6 01:10:10 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!

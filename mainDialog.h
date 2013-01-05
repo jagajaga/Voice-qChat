@@ -11,20 +11,27 @@
 #include "ui_newForm.h"
 #include "nickDialog.hpp"
 #include "CommandBroadcaster.hpp"
+#include <QMap>
 
 class newForm : public QDialog {
     Q_OBJECT
     CommandBroadcaster * my_command_broadcaster;
     nickDialog * mynd;
+    QMap<QString, QString> my_map;
+   
 public:
     newForm();
     virtual ~newForm();
 private:
     Ui::newForm widget;
+    void update_listwidget();
 private slots:
-    void send_hello();
+    void drop_map();
+    void f_connect();
+    void disconnect();
+    void connect_disconnect();
     void set_nick();
-    void newUser(QString);
+    void newUser(QString, QString);
     void deleteUser(QString);
     void nick_changed(QString);
 

@@ -15,17 +15,18 @@ class CommandBroadcaster : public QObject {
 private:
     QUdpSocket my_udp_socket;
     QHostAddress my_ip;
-    QByteArray nick = "NICK ";
+    QByteArray nick = "HELLO ";
     QByteArray hello = "HELLO\0", ping = "PING\0", quit = "QUIT\0", audio = "AUDIO";
     short port = 4815;
-    void open_port();
-    void close_port();
+    bool open;
     QHostAddress local_ip();
 public:
     CommandBroadcaster();
     CommandBroadcaster(QString);
     ~CommandBroadcaster();
-    void send_hello();
+    void open_port();
+    void close_port();
+    bool re_port();
     void send_ping();
     void send_ping(QHostAddress);
     void send_nick();
@@ -37,8 +38,9 @@ private slots:
     void process_pending_datagrams();
 signals:
     void deleteUser(QString);
-    void newUser(QString);
-
+    void newUser(QString, QString);
+    void drop_table();
+    
 };
 
 #endif	/* COMMANDBROADCASTER_HPP */
