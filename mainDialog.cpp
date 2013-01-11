@@ -8,15 +8,21 @@
 #include "mainDialog.h"
 #include <QListWidget>
 #include <QListWidgetItem>
+#include "soundlib/speex_encoder.hpp"
 
+#include <iostream>
 
 newForm::newForm() {
     my_command_broadcaster = new CommandBroadcaster();
+    std::cerr << "connect\n";
+    vt(my_command_broadcaster);
+    vt.start();
+   // connect(&vt, SIGNAL(send_encoded(speex_encoder *)), my_command_broadcaster, SLOT (send_encoded (speex_encoder *)), Qt::QueuedConnection);
     mynd = new nickDialog(my_command_broadcaster);
 
 
     widget.setupUi(this);
-    
+
     connect(my_command_broadcaster, SIGNAL(newUser(QString, QString)), this, SLOT(newUser(QString, QString)));
     connect(my_command_broadcaster, SIGNAL(drop_table()), this, SLOT(drop_map()));
     connect(my_command_broadcaster, SIGNAL(deleteUser(QString)), this, SLOT(deleteUser(QString)));
@@ -30,6 +36,8 @@ newForm::newForm() {
     widget.mute->hide();
     widget.listWidget->sortItems(Qt::AscendingOrder);
     mynd->show();
+
+
 }
 
 void newForm::newUser(QString sender, QString nick) {
@@ -67,6 +75,7 @@ void newForm::nick_changed(QString nick) {
     widget.stop->show();
     widget.mute->show();
     widget.stop->setText("Disconnect");
+
 }
 
 void newForm::connect_disconnect() {
@@ -87,8 +96,9 @@ void newForm::f_connect() {
 void newForm::disconnect() {
     my_command_broadcaster->send_quit();
     widget.listWidget->clear();
-    
+
 }
 
 newForm::~newForm() {
+
 }

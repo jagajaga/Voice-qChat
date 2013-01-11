@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'nickDialog.ui'
 **
-** Created: Sun Jan 6 02:08:09 2013
+** Created: Tue Jan 8 00:39:50 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

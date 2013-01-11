@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CommandBroadcaster.hpp'
 **
-** Created: Sun Jan 6 02:08:11 2013
+** Created: Tue Jan 8 00:39:54 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_CommandBroadcaster[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,6 +37,7 @@ static const uint qt_meta_data_CommandBroadcaster[] = {
 
  // slots: signature, parameters, type, tag, flags
       80,   19,   19,   19, 0x08,
+     109,   19,   19,   19, 0x08,
 
        0        // eod
 };
@@ -44,6 +45,7 @@ static const uint qt_meta_data_CommandBroadcaster[] = {
 static const char qt_meta_stringdata_CommandBroadcaster[] = {
     "CommandBroadcaster\0\0deleteUser(QString)\0"
     ",\0newUser(QString,QString)\0drop_table()\0"
+    "send_encoded(speex_encoder*)\0"
     "process_pending_datagrams()\0"
 };
 
@@ -56,7 +58,8 @@ void CommandBroadcaster::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 0: _t->deleteUser((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->newUser((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 2: _t->drop_table(); break;
-        case 3: _t->process_pending_datagrams(); break;
+        case 3: _t->send_encoded((*reinterpret_cast< speex_encoder*(*)>(_a[1]))); break;
+        case 4: _t->process_pending_datagrams(); break;
         default: ;
         }
     }
@@ -94,9 +97,9 @@ int CommandBroadcaster::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

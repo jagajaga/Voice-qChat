@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>CommandBroadcaster.hpp</itemPath>
+      <itemPath>VoiceThread.hpp</itemPath>
       <itemPath>mainDialog.h</itemPath>
       <itemPath>nickDialog.hpp</itemPath>
     </logicalFolder>
@@ -14,7 +15,7 @@
       <itemPath>newForm.ui</itemPath>
       <itemPath>nickDialog.ui</itemPath>
     </logicalFolder>
-    <logicalFolder name="f1" displayName="soundlib" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f1" displayName="soundlib" projectFiles="true">
       <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/alsa_format_conversion.cpp</itemPath>
       <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/alsa_format_conversion.hpp</itemPath>
       <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/asoundpp.cpp</itemPath>
@@ -35,6 +36,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>CommandBroadcaster.cpp</itemPath>
+      <itemPath>VoiceThread.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>mainDialog.cpp</itemPath>
       <itemPath>nickDialog.cpp</itemPath>
@@ -52,7 +54,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../../C++/Sorokin/asoundpp/lib/soundio</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

@@ -13,9 +13,12 @@
 #include "CommandBroadcaster.hpp"
 #include <QMap>
 
+#include "VoiceThread.hpp"
+
 class newForm : public QDialog {
     Q_OBJECT
     CommandBroadcaster * my_command_broadcaster;
+    VoiceThread vt;
     nickDialog * mynd;
     QMap<QString, QString> my_map;
    

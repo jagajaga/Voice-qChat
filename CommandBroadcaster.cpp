@@ -1,6 +1,7 @@
 #include "CommandBroadcaster.hpp"
 #include <QNetworkInterface>
 
+#include <iostream>
 
 CommandBroadcaster::CommandBroadcaster() {
     connect(&my_udp_socket, SIGNAL(readyRead()), this, SLOT(process_pending_datagrams()));
@@ -38,7 +39,6 @@ void CommandBroadcaster::close_port() {
     my_udp_socket.close();
     open = 0;
 }
-
 
 void CommandBroadcaster::send_ping() {
     my_udp_socket.writeDatagram(ping.data(), ping.size(), QHostAddress::Broadcast, port);
@@ -80,9 +80,12 @@ void CommandBroadcaster::process_pending_datagrams() {
         datagram.resize(my_udp_socket.pendingDatagramSize());
         QHostAddress sender;
         my_udp_socket.readDatagram(datagram.data(), datagram.size(), &sender);
+        
+        std::cerr << "IM HERE\n";
         if (sender == my_ip) {
-            break;
+            continue; //TODO may be it's unnessesary
         }
+        std::cerr << datagram.data() << " data\n";
         QByteArray temp_nick;
         for (int i = 0; i < 5; i++)
             temp_nick.push_back(datagram[i]);
@@ -91,13 +94,30 @@ void CommandBroadcaster::process_pending_datagrams() {
             for (int i = 6; i < datagram.size(); i++) {
                 temp_nick.push_back(datagram[i]);
             }
-            emit newUser(sender.toString(), temp_nick);
+            emit newUser(sender.toString(), QString(temp_nick).toUtf8());
+            continue;
+            
         }
         if (datagram == ping.data()) {
             send_nick(sender);
         }
         if (datagram == quit.data()) {
             emit deleteUser(sender.toString());
+            continue;
+        }
+        temp_nick.clear();
+        for (int i = 0; i < 5; i++)
+            temp_nick.push_back(datagram[i]);
+        if (temp_nick == "AUDIO") {
+            temp_nick.clear();
+            std::cerr << audio.data();
         }
     }
+}
+
+void CommandBroadcaster::send_encoded(speex_encoder * encoder) {
+    
+    std::cerr << audio.data();
+   // audio = audio + ' ' + encoder->get_encoded_size() + encoder->get_encoded_data();
+    my_udp_socket.writeDatagram(audio.data(), audio.size(), QHostAddress::Broadcast, port);
 }

@@ -10,6 +10,8 @@
 
 #include <QUdpSocket>
 
+#include "soundlib/speex_encoder.hpp"
+
 class CommandBroadcaster : public QObject {
     Q_OBJECT
 private:
@@ -32,15 +34,17 @@ public:
     void send_nick();
     void send_nick(QHostAddress);
     void send_quit();
-    
+
     void set_nick(QString);
+public slots:
+    void send_encoded(speex_encoder *);
 private slots:
     void process_pending_datagrams();
 signals:
     void deleteUser(QString);
     void newUser(QString, QString);
     void drop_table();
-    
+
 };
 
 #endif	/* COMMANDBROADCASTER_HPP */
