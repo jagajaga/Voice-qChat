@@ -3,27 +3,59 @@
 
 #include <iostream>
 
-void VoiceThread::run() {
-    input_device in(fmt);
-    output_device out(fmt);
-    std::vector<char> outv = std::vector<char>(decoder.block_size() * fmt.frame_size());
-    std::cerr << "run in voice\n";
+VoiceThread::VoiceThread() : in(new input_device(fmt)), v(std::vector<char>(voice_const * in->get_format().frame_size())), my_command_broadcaster(CommandBroadcaster::Instance()) {
+    asound::global_config_cleanup cleanup;
+}
 
+VoiceThread::~VoiceThread() {
+}
 
-    for (;;) {
-        in.read(&voice[0], encoder.block_size());
+void VoiceThread::add_output_device(QString ip, QString nick) {
+    out[ip] = new output_device(fmt);
+}
 
-        encoder.encode(&voice[0]);
-        //emit send_encoded(&encoder);
-        my_command_broadcaster->send_encoded(&encoder);
-        Sleeper::sleep(5);
-        //        decoder.decode(encoder.get_encoded_data(), encoder.get_encoded_size(), &outv[0]);
-        //        out.write(&outv[0], decoder.block_size());
+void VoiceThread::read() {
+    size_t nn = in->get_available();
+    QByteArray source(nn * fmt.frame_size(), 0);
+    if (nn == 0)
+        nn = 1;
+    else if (nn > voice_const)
+        nn = voice_const;
+    in->read(source.begin(), nn);
 
+    if (my_command_broadcaster->open) {
+        QByteArray res;
+        for (size_t i = 0; source.size() - i >= encoder.block_size() * fmt.frame_size();
+                i += encoder.block_size() * fmt.frame_size()) {
+            encoder.encode(source.begin() + i);
+            size_t size = encoder.get_encoded_size();
+            res.append(size);
+            res.append(QByteArray((const char*) encoder.get_encoded_data(), size));
+
+        }
+        if (!mute) {
+            my_command_broadcaster->send_encoded(res);
+        }
     }
 
 }
 
-VoiceThread::VoiceThread(CommandBroadcaster * & cb) {
-    my_command_broadcaster = cb;
-};
+void VoiceThread::write(QByteArray const & source, QString ip) {
+    if (my_command_broadcaster->open) {
+        QByteArray res;
+        std::vector<char> buf(decoder.block_size() * fmt.frame_size());
+        for (int i = 0; i < source.size();) {
+            int enc_size = source.at(i);
+            if (enc_size < 0) {
+                break;
+            }
+            ++i;
+            decoder.decode(source.begin() + i, enc_size, &buf[0]);
+            res.append(&buf[0], decoder.block_size() * fmt.frame_size());
+            i += enc_size;
+        }
+        if (out.count(ip)) {
+            out[ip]->write(res, res.size() / fmt.frame_size());
+        }
+    }
+}

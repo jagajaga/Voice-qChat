@@ -11,21 +11,24 @@
 #include <QUdpSocket>
 
 #include "soundlib/speex_encoder.hpp"
+#include "soundlib/speex_decoder.hpp"
+//#include "VoiceThread.hpp"
+
+//class CommandBroadcaster {
+//};
 
 class CommandBroadcaster : public QObject {
+
     Q_OBJECT
-private:
-    QUdpSocket my_udp_socket;
-    QHostAddress my_ip;
-    QByteArray nick = "HELLO ";
-    QByteArray hello = "HELLO\0", ping = "PING\0", quit = "QUIT\0", audio = "AUDIO";
-    short port = 4815;
-    bool open;
-    QHostAddress local_ip();
 public:
-    CommandBroadcaster();
-    CommandBroadcaster(QString);
-    ~CommandBroadcaster();
+    static CommandBroadcaster* Instance() {
+        static CommandBroadcaster * singleton = new CommandBroadcaster();
+        return singleton;
+    }
+
+    //    CommandBroadcaster();
+    //    CommandBroadcaster(QString);
+    //    ~CommandBroadcaster();
     void open_port();
     void close_port();
     bool re_port();
@@ -36,16 +39,35 @@ public:
     void send_quit();
 
     void set_nick(QString);
+
+    bool open = false;
 public slots:
-    void send_encoded(speex_encoder *);
+    void send_encoded(QByteArray const &);
 private slots:
     void process_pending_datagrams();
 signals:
+    void write_audio(QByteArray const &, QString);
     void deleteUser(QString);
     void newUser(QString, QString);
     void drop_table();
 
+    // Other non-static member functions
+private:
+
+    CommandBroadcaster();
+    ~CommandBroadcaster();
+    CommandBroadcaster(const CommandBroadcaster&); // Prevent copy-construction
+    CommandBroadcaster& operator=(const CommandBroadcaster&); // Prevent assignment
+
+    QUdpSocket my_udp_socket;
+    QHostAddress my_ip;
+    QByteArray nick = "HELLO ";
+    QByteArray hello = "HELLO\0", ping = "PING\0", quit = "QUIT\0", audio = "AUDIO ";
+    short const port = 4815;
+    QHostAddress local_ip();
+
+    //VoiceThread * vt;
+
 };
 
 #endif	/* COMMANDBROADCASTER_HPP */
-

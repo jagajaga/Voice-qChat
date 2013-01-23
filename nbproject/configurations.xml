@@ -82,7 +82,7 @@
       </toolsSet>
       <qt>
         <buildMode>1</buildMode>
-        <modules>core gui</modules>
+        <modules>core gui network</modules>
       </qt>
       <compileType>
         <cTool>
@@ -97,6 +97,12 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>speex</linkerLibLibItem>
+            <linkerLibLibItem>asound</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
     </conf>
   </confs>

@@ -12,16 +12,19 @@
 #include "nickDialog.hpp"
 #include "CommandBroadcaster.hpp"
 #include <QMap>
+#include <QTimer>
 
 #include "VoiceThread.hpp"
 
 class newForm : public QDialog {
     Q_OBJECT
     CommandBroadcaster * my_command_broadcaster;
-    VoiceThread vt;
+    VoiceThread * vt;
     nickDialog * mynd;
     QMap<QString, QString> my_map;
    
+    QTimer * timer;
+    
 public:
     newForm();
     virtual ~newForm();
@@ -29,6 +32,7 @@ private:
     Ui::newForm widget;
     void update_listwidget();
 private slots:
+    void mute();
     void drop_map();
     void f_connect();
     void disconnect();

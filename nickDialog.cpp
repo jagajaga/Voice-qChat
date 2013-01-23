@@ -11,14 +11,15 @@
 #include "mainDialog.h"
 
 nickDialog::nickDialog() {
-
-}
-
-nickDialog::nickDialog(CommandBroadcaster * & cb) {
     widget.setupUi(this);
     connect(widget.cancel, SIGNAL(clicked()), this, SLOT(quit()));
     connect(widget.set, SIGNAL(clicked()), this, SLOT(set_nick()));
-    my_command_broadcaster = cb;
+    my_command_broadcaster = CommandBroadcaster::Instance();
+    this->setWindowTitle("Set nick");
+}
+
+nickDialog::nickDialog(CommandBroadcaster * & cb) {
+
 
 }
 
@@ -31,7 +32,7 @@ void nickDialog::set_nick() {
         my_command_broadcaster->open_port();
         my_command_broadcaster->set_nick(widget.lineEdit->displayText());
         my_command_broadcaster->send_nick();
-        my_command_broadcaster->send_ping();
+        my_command_broadcaster->send_ping();        
         emit nick_changed(widget.lineEdit->displayText());
         quit();
     } else {
