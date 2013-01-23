@@ -15,22 +15,22 @@
       <itemPath>newForm.ui</itemPath>
       <itemPath>nickDialog.ui</itemPath>
     </logicalFolder>
-    <logicalFolder name="f1" displayName="soundlib" projectFiles="true">
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/alsa_format_conversion.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/alsa_format_conversion.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/asoundpp.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/asoundpp.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/format.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/format.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/input_device.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/input_device.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/output_device.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/output_device.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/speex_decoder.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/speex_decoder.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/speex_encoder.cpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/speex_encoder.hpp</itemPath>
-      <itemPath>../../C++/Sorokin/asoundpp/lib/soundio/speex_profile.hpp</itemPath>
+    <logicalFolder name="soundlib" displayName="soundlib" projectFiles="true">
+      <itemPath>soundlib/alsa_format_conversion.cpp</itemPath>
+      <itemPath>soundlib/alsa_format_conversion.hpp</itemPath>
+      <itemPath>soundlib/asoundpp.cpp</itemPath>
+      <itemPath>soundlib/asoundpp.hpp</itemPath>
+      <itemPath>soundlib/format.cpp</itemPath>
+      <itemPath>soundlib/format.hpp</itemPath>
+      <itemPath>soundlib/input_device.cpp</itemPath>
+      <itemPath>soundlib/input_device.hpp</itemPath>
+      <itemPath>soundlib/output_device.cpp</itemPath>
+      <itemPath>soundlib/output_device.hpp</itemPath>
+      <itemPath>soundlib/speex_decoder.cpp</itemPath>
+      <itemPath>soundlib/speex_decoder.hpp</itemPath>
+      <itemPath>soundlib/speex_encoder.cpp</itemPath>
+      <itemPath>soundlib/speex_encoder.hpp</itemPath>
+      <itemPath>soundlib/speex_profile.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
