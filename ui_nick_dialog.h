@@ -1,14 +1,14 @@
 /********************************************************************************
-** Form generated from reading UI file 'nickDialog.ui'
+** Form generated from reading UI file 'nick_dialog.ui'
 **
-** Created: Wed Jan 23 23:41:16 2013
+** Created: Sat Jan 26 23:21:47 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_NICKDIALOG_H
-#define UI_NICKDIALOG_H
+#ifndef UI_NICK_DIALOG_H
+#define UI_NICK_DIALOG_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -86,4 +86,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_NICKDIALOG_H
+#endif // UI_NICK_DIALOG_H

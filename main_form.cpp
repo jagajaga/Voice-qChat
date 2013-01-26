@@ -5,14 +5,14 @@
  * Created on December 15, 2012, 2:49 PM
  */
 
-#include "mainDialog.h"
+#include "main_form.h"
 #include <QListWidget>
 #include <QListWidgetItem>
 #include "soundlib/speex_encoder.hpp"
 
 #include <iostream>
 
-newForm::newForm() : my_command_broadcaster(CommandBroadcaster::Instance()), mynd(new nickDialog()), vt(new VoiceThread()) {
+main_form::main_form() : my_command_broadcaster(command_broadcaster::Instance()), mynd(new nick_dialog()), vt(new voice()) {
     widget.setupUi(this);
 
     connect(my_command_broadcaster, SIGNAL(newUser(QString, QString)), this, SLOT(newUser(QString, QString)));
@@ -39,7 +39,7 @@ newForm::newForm() : my_command_broadcaster(CommandBroadcaster::Instance()), myn
     timer->start(100);
 }
 
-void newForm::mute() {
+void main_form::mute() {
     if (!vt->mute) {
         widget.mute->setText("Unmute mic");
     } else {
@@ -48,14 +48,14 @@ void newForm::mute() {
     vt->mute = !vt->mute;
 }
 
-void newForm::newUser(QString sender, QString nick) {
+void main_form::newUser(QString sender, QString nick) {
     if (my_map[sender].count() == 0 || my_map[sender] != nick) {
         my_map[sender] = nick;
         update_listwidget();
     }
 }
 
-void newForm::update_listwidget() {
+void main_form::update_listwidget() {
     widget.listWidget->clear();
     if (!my_map.size()) return;
     for (QMap<QString, QString>::Iterator i = my_map.begin(); i != my_map.end(); i++) {
@@ -64,20 +64,20 @@ void newForm::update_listwidget() {
     }
 }
 
-void newForm::deleteUser(QString sender) {
+void main_form::deleteUser(QString sender) {
     my_map.erase(my_map.find(sender));
     update_listwidget();
 }
 
-void newForm::set_nick() {
+void main_form::set_nick() {
     mynd->show();
 }
 
-void newForm::drop_map() {
+void main_form::drop_map() {
     my_map.clear();
 }
 
-void newForm::nick_changed(QString nick) {
+void main_form::nick_changed(QString nick) {
     this->show();
     widget.nick->setText(nick);
     widget.stop->show();
@@ -86,7 +86,7 @@ void newForm::nick_changed(QString nick) {
 
 }
 
-void newForm::connect_disconnect() {
+void main_form::connect_disconnect() {
     if (my_command_broadcaster->open) {
         widget.stop->setText("Connect");
         disconnect();
@@ -98,16 +98,16 @@ void newForm::connect_disconnect() {
     }
 }
 
-void newForm::f_connect() {
+void main_form::f_connect() {
     my_command_broadcaster->send_nick();
     my_command_broadcaster->send_ping();
 }
 
-void newForm::disconnect() {
+void main_form::disconnect() {
     my_command_broadcaster->send_quit();
     widget.listWidget->clear();
 }
 
-newForm::~newForm() {
+main_form::~main_form() {
 
 }

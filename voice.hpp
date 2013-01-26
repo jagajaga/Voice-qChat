@@ -1,12 +1,12 @@
 /* 
- * File:   VoiceThread.hpp
+ * File:   voice.hpp
  * Author: jaga
  *
  * Created on January 6, 2013, 3:23 PM
  */
 
-#ifndef VOICETHREAD_HPP
-#define	VOICETHREAD_HPP
+#ifndef VOICE_HPP
+#define	VOICE_HPP
 
 #include <QObject>
 #include <vector>
@@ -18,15 +18,14 @@
 
 #include "soundlib/output_device.hpp"
 #include "soundlib/speex_decoder.hpp"
-#include "CommandBroadcaster.hpp"
+#include "command_broadcaster.hpp"
 
 #include <speex/speex.h>
 
-class VoiceThread : public QObject {
+class voice : public QObject {
     Q_OBJECT
 private:
-    CommandBroadcaster * my_command_broadcaster;
-    asound::global_config_cleanup cleanup;
+    command_broadcaster * my_command_broadcaster;
     frame_format const fmt = frame_format(44100, 1, SOUNDIO_SAMPLE_FORMAT_S16);
 
     input_device * in;
@@ -38,9 +37,7 @@ private:
 
     int const voice_const = 44100;
 
-    std::vector<char> voice = std::vector<char>(encoder.block_size() * fmt.frame_size());
-    std::vector<char> v;
-    std::vector<char> outv = std::vector<char>(decoder.block_size() * fmt.frame_size());
+
 public slots:
     void read();
     void write(QByteArray const &, QString);
@@ -48,11 +45,11 @@ public slots:
 signals:
     void send_encoded(QByteArray &);
 public:
-    VoiceThread();
-    ~VoiceThread();
+    voice();
+    ~voice();
     bool mute = false;
 
 };
 
-#endif	/* VOICETHREAD_HPP */
+#endif	/* VOICE_HPP */
 

@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'CommandBroadcaster.hpp'
+** Meta object code from reading C++ file 'command_broadcaster.hpp'
 **
-** Created: Wed Jan 23 23:41:20 2013
+** Created: Sat Jan 26 23:21:50 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "CommandBroadcaster.hpp"
+#include "command_broadcaster.hpp"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'CommandBroadcaster.hpp' doesn't include <QObject>."
+#error "The header file 'command_broadcaster.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
 #error "This file was generated using the moc from 4.8.4. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_CommandBroadcaster[] = {
+static const uint qt_meta_data_command_broadcaster[] = {
 
  // content:
        6,       // revision
@@ -31,31 +31,31 @@ static const uint qt_meta_data_CommandBroadcaster[] = {
        4,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      22,   20,   19,   19, 0x05,
-      54,   19,   19,   19, 0x05,
-      74,   20,   19,   19, 0x05,
-      99,   19,   19,   19, 0x05,
+      23,   21,   20,   20, 0x05,
+      55,   20,   20,   20, 0x05,
+      75,   21,   20,   20, 0x05,
+     100,   20,   20,   20, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     112,   19,   19,   19, 0x0a,
-     137,   19,   19,   19, 0x08,
+     113,   20,   20,   20, 0x0a,
+     138,   20,   20,   20, 0x08,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_CommandBroadcaster[] = {
-    "CommandBroadcaster\0\0,\0"
+static const char qt_meta_stringdata_command_broadcaster[] = {
+    "command_broadcaster\0\0,\0"
     "write_audio(QByteArray,QString)\0"
     "deleteUser(QString)\0newUser(QString,QString)\0"
     "drop_table()\0send_encoded(QByteArray)\0"
     "process_pending_datagrams()\0"
 };
 
-void CommandBroadcaster::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void command_broadcaster::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         Q_ASSERT(staticMetaObject.cast(_o));
-        CommandBroadcaster *_t = static_cast<CommandBroadcaster *>(_o);
+        command_broadcaster *_t = static_cast<command_broadcaster *>(_o);
         switch (_id) {
         case 0: _t->write_audio((*reinterpret_cast< const QByteArray(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 1: _t->deleteUser((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -68,33 +68,33 @@ void CommandBroadcaster::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     }
 }
 
-const QMetaObjectExtraData CommandBroadcaster::staticMetaObjectExtraData = {
+const QMetaObjectExtraData command_broadcaster::staticMetaObjectExtraData = {
     0,  qt_static_metacall 
 };
 
-const QMetaObject CommandBroadcaster::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_CommandBroadcaster,
-      qt_meta_data_CommandBroadcaster, &staticMetaObjectExtraData }
+const QMetaObject command_broadcaster::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_command_broadcaster,
+      qt_meta_data_command_broadcaster, &staticMetaObjectExtraData }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &CommandBroadcaster::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &command_broadcaster::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *CommandBroadcaster::metaObject() const
+const QMetaObject *command_broadcaster::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *CommandBroadcaster::qt_metacast(const char *_clname)
+void *command_broadcaster::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_CommandBroadcaster))
-        return static_cast<void*>(const_cast< CommandBroadcaster*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_command_broadcaster))
+        return static_cast<void*>(const_cast< command_broadcaster*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int CommandBroadcaster::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int command_broadcaster::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -108,28 +108,28 @@ int CommandBroadcaster::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void CommandBroadcaster::write_audio(QByteArray const & _t1, QString _t2)
+void command_broadcaster::write_audio(QByteArray const & _t1, QString _t2)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void CommandBroadcaster::deleteUser(QString _t1)
+void command_broadcaster::deleteUser(QString _t1)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void CommandBroadcaster::newUser(QString _t1, QString _t2)
+void command_broadcaster::newUser(QString _t1, QString _t2)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void CommandBroadcaster::drop_table()
+void command_broadcaster::drop_table()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, 0);
 }

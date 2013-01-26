@@ -7,38 +7,39 @@
 
 #include <QtCore/qobject.h>
 
-#include "nickDialog.hpp"
-#include "mainDialog.h"
+#include "nick_dialog.hpp"
+#include "main_form.h"
 
-nickDialog::nickDialog() {
+nick_dialog::nick_dialog() {
     widget.setupUi(this);
     connect(widget.cancel, SIGNAL(clicked()), this, SLOT(quit()));
     connect(widget.set, SIGNAL(clicked()), this, SLOT(set_nick()));
-    my_command_broadcaster = CommandBroadcaster::Instance();
+    my_command_broadcaster = command_broadcaster::Instance();
     this->setWindowTitle("Set nick");
+    widget.lineEdit->setFocus();
 }
 
-nickDialog::nickDialog(CommandBroadcaster * & cb) {
-
-
+nick_dialog::nick_dialog(command_broadcaster * & cb) {
 }
 
-void nickDialog::quit() {
+void nick_dialog::quit() {
     this->close();
 }
 
-void nickDialog::set_nick() {
+void nick_dialog::set_nick() {
     if (widget.lineEdit->displayText() != "" && widget.lineEdit->displayText() != "Please set nick") {
         my_command_broadcaster->open_port();
         my_command_broadcaster->set_nick(widget.lineEdit->displayText());
         my_command_broadcaster->send_nick();
-        my_command_broadcaster->send_ping();        
+        my_command_broadcaster->send_ping();
         emit nick_changed(widget.lineEdit->displayText());
         quit();
     } else {
         widget.lineEdit->setText("Please set nick"); //TODO make "toast"
+        widget.lineEdit->setFocus();
+        widget.lineEdit->selectAll();
     }
 }
 
-nickDialog::~nickDialog() {
+nick_dialog::~nick_dialog() {
 }

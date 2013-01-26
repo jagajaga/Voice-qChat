@@ -1,20 +1,20 @@
-#include "VoiceThread.hpp"
+#include "voice.hpp"
 
 
 #include <iostream>
 
-VoiceThread::VoiceThread() : in(new input_device(fmt)), v(std::vector<char>(voice_const * in->get_format().frame_size())), my_command_broadcaster(CommandBroadcaster::Instance()) {
+voice::voice() : in(new input_device(fmt)), my_command_broadcaster(command_broadcaster::Instance()) {
     asound::global_config_cleanup cleanup;
 }
 
-VoiceThread::~VoiceThread() {
+voice::~voice() {
 }
 
-void VoiceThread::add_output_device(QString ip, QString nick) {
+void voice::add_output_device(QString ip, QString nick) {
     out[ip] = new output_device(fmt);
 }
 
-void VoiceThread::read() {
+void voice::read() {
     size_t nn = in->get_available();
     QByteArray source(nn * fmt.frame_size(), 0);
     if (nn == 0)
@@ -40,7 +40,7 @@ void VoiceThread::read() {
 
 }
 
-void VoiceThread::write(QByteArray const & source, QString ip) {
+void voice::write(QByteArray const & source, QString ip) {
     if (my_command_broadcaster->open) {
         QByteArray res;
         std::vector<char> buf(decoder.block_size() * fmt.frame_size());

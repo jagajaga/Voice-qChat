@@ -10,17 +10,11 @@
 
 
 
-#include "mainDialog.h"
-#include "VoiceThread.hpp"
+#include "main_form.h"
+#include "voice.hpp"
 
 int main(int argc, char *argv[]) {
-
     QApplication app(argc, argv);
-    newForm * nf = new newForm();
-
-    
-    
+    main_form * nf = new main_form();
     return app.exec();
-
-
 }

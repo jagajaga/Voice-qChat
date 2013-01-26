@@ -1,26 +1,26 @@
-#include "CommandBroadcaster.hpp"
-#include "VoiceThread.hpp"
+#include "command_broadcaster.hpp"
+#include "voice.hpp"
 #include <QNetworkInterface>
 
 #include <iostream>
 
-CommandBroadcaster::CommandBroadcaster() {
+command_broadcaster::command_broadcaster() {
     connect(&my_udp_socket, SIGNAL(readyRead()), this, SLOT(process_pending_datagrams()));
     my_ip = local_ip();
 }
 
-CommandBroadcaster::~CommandBroadcaster() {
+command_broadcaster::~command_broadcaster() {
     my_udp_socket.close();
 }
 
-void CommandBroadcaster::open_port() {
+void command_broadcaster::open_port() {
     open = 1;
     if (my_udp_socket.state() == QUdpSocket::UnconnectedState) {
         my_udp_socket.bind(port);
     }
 }
 
-bool CommandBroadcaster::re_port() {
+bool command_broadcaster::re_port() {
     if (!open) {
         open_port();
         open = true;
@@ -32,50 +32,51 @@ bool CommandBroadcaster::re_port() {
     }
 }
 
-void CommandBroadcaster::close_port() {
+void command_broadcaster::close_port() {
     my_udp_socket.close();
     open = 0;
 }
 
-void CommandBroadcaster::send_ping() {
+void command_broadcaster::send_ping() {
     my_udp_socket.writeDatagram(ping.data(), ping.size(), QHostAddress::Broadcast, port);
     emit drop_table();
 }
 
-void CommandBroadcaster::send_ping(QHostAddress qha) {
+void command_broadcaster::send_ping(QHostAddress qha) {
     my_udp_socket.writeDatagram(ping.data(), ping.size(), qha, port);
 }
 
-void CommandBroadcaster::send_nick() {
+void command_broadcaster::send_nick() {
     my_udp_socket.writeDatagram(nick.data(), nick.size(), QHostAddress::Broadcast, port);
 }
 
-void CommandBroadcaster::send_nick(QHostAddress qha) {
+void command_broadcaster::send_nick(QHostAddress qha) {
     my_udp_socket.writeDatagram(nick.data(), nick.size(), qha, port);
 }
 
-void CommandBroadcaster::send_quit() {
+void command_broadcaster::send_quit() {
     my_udp_socket.writeDatagram(quit.data(), quit.size(), QHostAddress::Broadcast, port);
 }
 
-void CommandBroadcaster::set_nick(QString new_nick) {
+void command_broadcaster::set_nick(QString new_nick) {
     new_nick = "HELLO " + new_nick + "\0";
     nick = new_nick.toUtf8();
 }
 
-QHostAddress CommandBroadcaster::local_ip() {
+QHostAddress command_broadcaster::local_ip() {
+
     QList <QHostAddress> adder = QNetworkInterface::allAddresses();
     return adder.at(2);
 }
 
-void CommandBroadcaster::send_encoded(QByteArray const & encoded) {
+void command_broadcaster::send_encoded(QByteArray const & encoded) {
     QByteArray tmp;
     tmp = audio;
     tmp.append(encoded);
     my_udp_socket.writeDatagram(tmp.data(), tmp.size(), QHostAddress::Broadcast, port);
 }
 
-void CommandBroadcaster::process_pending_datagrams() {
+void command_broadcaster::process_pending_datagrams() {
     while (my_udp_socket.hasPendingDatagrams()) {
         QByteArray datagram;
         datagram.resize(my_udp_socket.pendingDatagramSize());

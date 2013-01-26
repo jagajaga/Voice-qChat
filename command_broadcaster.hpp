@@ -5,8 +5,8 @@
  * Created on December 15, 2012, 11:14 PM
  */
 
-#ifndef COMMANDBROADCASTER_HPP
-#define	COMMANDBROADCASTER_HPP
+#ifndef COMMAND_BROADCASTER_HPP
+#define	COMMAND_BROADCASTER_HPP
 
 #include <QUdpSocket>
 
@@ -17,12 +17,12 @@
 //class CommandBroadcaster {
 //};
 
-class CommandBroadcaster : public QObject {
+class command_broadcaster : public QObject {
 
     Q_OBJECT
 public:
-    static CommandBroadcaster* Instance() {
-        static CommandBroadcaster * singleton = new CommandBroadcaster();
+    static command_broadcaster* Instance() {
+        static command_broadcaster * singleton = new command_broadcaster();
         return singleton;
     }
 
@@ -54,10 +54,10 @@ signals:
     // Other non-static member functions
 private:
 
-    CommandBroadcaster();
-    ~CommandBroadcaster();
-    CommandBroadcaster(const CommandBroadcaster&); // Prevent copy-construction
-    CommandBroadcaster& operator=(const CommandBroadcaster&); // Prevent assignment
+    command_broadcaster();
+    ~command_broadcaster();
+    command_broadcaster(const command_broadcaster&); // Prevent copy-construction
+    command_broadcaster& operator=(const command_broadcaster&); // Prevent assignment
 
     QUdpSocket my_udp_socket;
     QHostAddress my_ip;
@@ -70,4 +70,4 @@ private:
 
 };
 
-#endif	/* COMMANDBROADCASTER_HPP */
+#endif	/* COMMAND_BROADCASTER_HPP */

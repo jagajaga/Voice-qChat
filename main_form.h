@@ -5,29 +5,29 @@
  * Created on December 15, 2012, 2:49 PM
  */
 
-#ifndef _NEWFORM_H
-#define	_NEWFORM_H
+#ifndef _MAIN_FORM_H
+#define	_MAIN_FORM_H
 
 #include "ui_newForm.h"
-#include "nickDialog.hpp"
-#include "CommandBroadcaster.hpp"
+#include "nick_dialog.hpp"
+#include "command_broadcaster.hpp"
 #include <QMap>
 #include <QTimer>
 
-#include "VoiceThread.hpp"
+#include "voice.hpp"
 
-class newForm : public QDialog {
+class main_form : public QDialog {
     Q_OBJECT
-    CommandBroadcaster * my_command_broadcaster;
-    VoiceThread * vt;
-    nickDialog * mynd;
+    command_broadcaster * my_command_broadcaster;
+    voice * vt;
+    nick_dialog * mynd;
     QMap<QString, QString> my_map;
    
     QTimer * timer;
     
 public:
-    newForm();
-    virtual ~newForm();
+    main_form();
+    virtual ~main_form();
 private:
     Ui::newForm widget;
     void update_listwidget();
@@ -44,4 +44,4 @@ private slots:
 
 };
 
-#endif	/* _NEWFORM_H */
+#endif	/* _MAIN_FORM_H */

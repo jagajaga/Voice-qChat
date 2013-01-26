@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'VoiceThread.hpp'
+** Meta object code from reading C++ file 'voice.hpp'
 **
-** Created: Wed Jan 23 23:41:20 2013
+** Created: Sat Jan 26 23:21:51 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "VoiceThread.hpp"
+#include "voice.hpp"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'VoiceThread.hpp' doesn't include <QObject>."
+#error "The header file 'voice.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
 #error "This file was generated using the moc from 4.8.4. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_VoiceThread[] = {
+static const uint qt_meta_data_voice[] = {
 
  // content:
        6,       // revision
@@ -31,27 +31,27 @@ static const uint qt_meta_data_VoiceThread[] = {
        1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      13,   12,   12,   12, 0x05,
+       7,    6,    6,    6, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      39,   12,   12,   12, 0x0a,
-      48,   46,   12,   12, 0x0a,
-      74,   46,   12,   12, 0x0a,
+      33,    6,    6,    6, 0x0a,
+      42,   40,    6,    6, 0x0a,
+      68,   40,    6,    6, 0x0a,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_VoiceThread[] = {
-    "VoiceThread\0\0send_encoded(QByteArray&)\0"
+static const char qt_meta_stringdata_voice[] = {
+    "voice\0\0send_encoded(QByteArray&)\0"
     "read()\0,\0write(QByteArray,QString)\0"
     "add_output_device(QString,QString)\0"
 };
 
-void VoiceThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void voice::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         Q_ASSERT(staticMetaObject.cast(_o));
-        VoiceThread *_t = static_cast<VoiceThread *>(_o);
+        voice *_t = static_cast<voice *>(_o);
         switch (_id) {
         case 0: _t->send_encoded((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         case 1: _t->read(); break;
@@ -62,33 +62,33 @@ void VoiceThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-const QMetaObjectExtraData VoiceThread::staticMetaObjectExtraData = {
+const QMetaObjectExtraData voice::staticMetaObjectExtraData = {
     0,  qt_static_metacall 
 };
 
-const QMetaObject VoiceThread::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_VoiceThread,
-      qt_meta_data_VoiceThread, &staticMetaObjectExtraData }
+const QMetaObject voice::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_voice,
+      qt_meta_data_voice, &staticMetaObjectExtraData }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &VoiceThread::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &voice::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *VoiceThread::metaObject() const
+const QMetaObject *voice::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *VoiceThread::qt_metacast(const char *_clname)
+void *voice::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_VoiceThread))
-        return static_cast<void*>(const_cast< VoiceThread*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_voice))
+        return static_cast<void*>(const_cast< voice*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int VoiceThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int voice::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -102,7 +102,7 @@ int VoiceThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void VoiceThread::send_encoded(QByteArray & _t1)
+void voice::send_encoded(QByteArray & _t1)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
