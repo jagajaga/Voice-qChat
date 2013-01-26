@@ -8,7 +8,7 @@
 #ifndef _NICK_DIALOG_HPP
 #define	_NICK_DIALOG_HPP
 
-#include "ui_nickDialog.h"
+#include "ui_nick_dialog.h"
 #include "command_broadcaster.hpp"
 
 class nick_dialog : public QDialog {

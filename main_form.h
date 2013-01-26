@@ -8,7 +8,7 @@
 #ifndef _MAIN_FORM_H
 #define	_MAIN_FORM_H
 
-#include "ui_newForm.h"
+#include "ui_new_form.h"
 #include "nick_dialog.hpp"
 #include "command_broadcaster.hpp"
 #include <QMap>
