@@ -8,8 +8,6 @@
 #include <QtGui/QApplication>
 #include <QtGui/qwidget.h>
 
-
-
 #include "main_form.h"
 #include "voice.hpp"
 

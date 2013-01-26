@@ -1,8 +1,6 @@
 #include "voice.hpp"
 
 
-#include <iostream>
-
 voice::voice() : in(new input_device(fmt)), my_command_broadcaster(command_broadcaster::Instance()) {
     asound::global_config_cleanup cleanup;
 }

@@ -2,8 +2,6 @@
 #include "voice.hpp"
 #include <QNetworkInterface>
 
-#include <iostream>
-
 command_broadcaster::command_broadcaster() {
     connect(&my_udp_socket, SIGNAL(readyRead()), this, SLOT(process_pending_datagrams()));
     my_ip = local_ip();
@@ -64,9 +62,11 @@ void command_broadcaster::set_nick(QString new_nick) {
 }
 
 QHostAddress command_broadcaster::local_ip() {
-
     QList <QHostAddress> adder = QNetworkInterface::allAddresses();
-    return adder.at(2);
+    if (connected()) {
+        return adder.at(2);
+    }
+    return adder.at(0);
 }
 
 void command_broadcaster::send_encoded(QByteArray const & encoded) {
@@ -111,4 +111,20 @@ void command_broadcaster::process_pending_datagrams() {
             emit write_audio(temp, sender.toString());
         }
     }
+}
+
+bool command_broadcaster::connected() {
+    QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
+    bool result = false;
+    for (int i = 0; i < ifaces.count(); i++) {
+        QNetworkInterface iface = ifaces.at(i);
+        if (iface.flags().testFlag(QNetworkInterface::IsUp) && !iface.flags().testFlag(QNetworkInterface::IsLoopBack)) {
+            for (int j = 0; j < iface.addressEntries().count(); j++) {
+                if (result == false)
+                    result = true;
+            }
+        }
+
+    }
+    return result;
 }

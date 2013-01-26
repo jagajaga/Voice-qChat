@@ -9,7 +9,6 @@
 #define	VOICE_HPP
 
 #include <QObject>
-#include <vector>
 #include <QMap>
 
 #include "soundlib/asoundpp.hpp"
@@ -30,24 +29,26 @@ private:
 
     input_device * in;
     QMap <QString, output_device *> out;
-    
-    
+
+
     speex_encoder encoder;
     speex_decoder decoder;
 
     int const voice_const = 44100;
 
+public:
+    voice();
+    ~voice();
+    bool mute = false;
 
 public slots:
     void read();
     void write(QByteArray const &, QString);
     void add_output_device(QString, QString);
+
 signals:
     void send_encoded(QByteArray &);
-public:
-    voice();
-    ~voice();
-    bool mute = false;
+
 
 };
 
